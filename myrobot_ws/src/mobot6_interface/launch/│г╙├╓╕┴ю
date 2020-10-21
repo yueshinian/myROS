@@ -1,0 +1,40 @@
+roslaunch mobot6_interface test5.launch  
+roslaunch mobot6_interface nuclear.launch
+
+rosrun mobot6_interface mobot6_manipulator
+rosrun mobot6_interface mobot6_interface
+
+rosrun mobot6_interface test_lspb
+rostopic echo /interface_states
+
+rosrun mobot6_interface vehicle61_coordinator
+rosrun mobot6_interface vehicle61_interface
+
+roscore
+rosrun mobot6_interface mobot6_keyboard.py
+rosrun mobot6_interface mobot6_preprocess_key
+
+rosrun rviz rviz
+
+
+rostopic echo /keyboard_input
+rostopic echo /arm_command
+rostopic echo /gripper_command
+rostopic echo /swingarm_command
+rostopic echo /navigation_command
+rostopic echo /interface_command
+rostopic echo /interface_command_grip
+rostopic echo /arm_user_frame
+rostopic echo /joint_states_arm
+rostopic echo /interface_states
+rostopic echo /joint_path_command
+
+rostopic echo /feedback_states
+rostopic echo /interface_velocity_vehicle
+rostopic echo /interface_command_vehicle
+rostopic echo /interface_states_vehicle
+
+rqt_graph
+roslaunch urdf_tutorial display.launch model:='$(find mobot_interface)'/urdf/myrobot_0412_test_version.urdf gui:=true
+roslaunch urdf_tutorial display.launch model:='$(find mobot_interface)'/urdf/myrobot_0412_original_version.urdf gui:=true
+

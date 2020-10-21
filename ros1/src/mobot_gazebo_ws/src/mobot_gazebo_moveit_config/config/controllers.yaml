@@ -1,0 +1,17 @@
+controller_list:
+  - name: manipulator_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+      - joint_turret_rotate
+      - joint_bigarm_pitch
+      - joint_bigarm_linear
+      - joint_forearm_pitch
+      - joint_forearm_rotate
+      - joint_wrist_pitch
+      - joint_wrist_rotate
+
+
+
+

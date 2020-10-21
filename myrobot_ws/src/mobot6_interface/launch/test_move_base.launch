@@ -1,0 +1,63 @@
+<launch>
+  <arg name="model" default="$(find mobot6_interface)/urdf/myrobot_20171128.urdf" />
+  <arg name="gui" default="false" />
+  <param name="robot_description" textfile="$(arg model)" />
+  <param name="use_gui" value="$(arg gui)"/>
+
+  <!-- define the location of the rviz file  -->
+  <arg name="command_args" value="-d $(find mobot6_interface)/rviz/urdf.rviz" />
+  <include file="$(find mobot6_moveit_config)/launch/planning_context.launch" >
+    <arg name="load_robot_description" value="true" />
+  </include>
+
+  <!-- publish the robot state (tf transforms) -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" >
+    <param name="publish_frequency" type="double" value="100.0" />
+  </node>
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="/use_gui" value="false"/>
+    <rosparam param="/source_list">[/joint_states_blend]</rosparam>
+  </node>
+
+  <include file="$(find mobot6_moveit_config)/launch/move_group.launch">
+    <arg name="publish_monitored_planning_scene" value="true" />
+    <remap from="/joint_states" to="/joint_states_vehicle" />
+    <arg name="fake_execution" value="false"/>
+    <arg name="info" value="true"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <node name="rviz" pkg="rviz" type="rviz" respawn="false" args="$(arg command_args)" output="screen">
+    <rosparam command="load" file="$(find mobot6_moveit_config)/config/kinematics.yaml"/>
+  </node>
+
+<!--  <node pkg="tf" type="static_transform_publisher" name="odom_to_map"
+    args="0.0 0.0 0.0 0.0 0.0 0.0 map /odom 100"/>-->
+  <!-- load the specific list of joint names for industrial_robot_simulator  -->
+  <!-- rosparam command="load" file="$(find mobot_moveit_config)/config/joint_names.yaml"/ -->
+
+  <!-- industrial_robot_simulator: accepts robot commands and reports status -->
+  <!-- node pkg="industrial_robot_simulator" type="industrial_robot_simulator" name="industrial_robot_simulator"/ -->
+
+  <!-- include file="$(find xiaweiji)/launch/socket.launch"/ -->
+  <include file="$(find mobot6_interface)/launch/socket.launch"/>
+  <!--node name="mobot_keyboard" pkg="mobot6_interface" type="mobot6_keyboard.py" launch-prefix="xterm -e"/-->
+  <node name="pre_process" pkg="mobot6_interface" type="mobot6_preprocess_qt" respawn="true" launch-prefix="xterm -e"/>
+  <!--node name="pre_process" pkg="mobot6_interface" type="mobot6_preprocess_key" launch-prefix="xterm -e"/-->
+  
+  <node name="states_blend" pkg="mobot6_interface" type="joint6_states_blend" launch-prefix="xterm -e"/>
+  <!--node name="fake6_arm_states" pkg="mobot6_interface" type="fake6_joint_states_arm" launch-prefix="xterm -e"/-->
+  <node name="node6_check" pkg="mobot6_interface" type="node6_check" launch-prefix="xterm -e"/>
+
+  <node name="mobot6_coordinator" pkg="mobot6_interface" type="mobot6_manipulator" launch-prefix="xterm -e" respawn="true"/>
+  <node name="mobot6_interface" pkg="mobot6_interface" type="mobot6_interface" launch-prefix="xterm -e" respawn="true"/>
+
+  <!-- node name="fake_vehicle_states" pkg="mobot_interface" type="fake_joint_states_vehicle" launch-prefix="xterm -e"/-->
+  <node name="vehicle_coordinator" pkg="mobot6_interface" type="vehicle61_coordinator" launch-prefix="xterm -e" respawn="true"/>
+  <node name="vehicle_interface" pkg="mobot6_interface" type="vehicle61_interface" launch-prefix="xterm -e" respawn="true"/>
+  <node  pkg="laser" type="laser"  name="laser" launch-prefix="xterm -e"/>
+  <!--node name="feed_back" pkg="mobot6_interface" type="feed_back_states" respawn="true"/-->
+  <!--node name="goal" pkg="mobot6_interface" type="goal" launch-prefix="xterm -e" respawn="true"/-->
+  <!--node name="veh_cmd_vel" pkg="mobot6_interface" type="veh_cmd_vel" launch-prefix="xterm -e" respawn="true"/-->
+</launch>

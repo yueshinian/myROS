@@ -1,0 +1,44 @@
+<launch>
+  <arg name="model" default="$(find mobot_description)/urdf/mobot_vehicle_1.urdf" />
+  <arg name="gui" default="false" />
+  <param name="robot_description" textfile="$(arg model)" />
+  <param name="use_gui" value="$(arg gui)"/>
+
+  <!-- define the location of the rviz file  -->
+  <arg name="command_args" value="-d $(find mobot_control)/rviz/mobot.rviz" />
+
+  <!-- load the robot_description parameter before launching ROS-I nodes -->
+  <include file="$(find mobot_gazebo_moveit_config)/launch/planning_context.launch" >
+    <arg name="load_robot_description" value="true" />
+  </include>
+
+  <!-- publish the robot state (tf transforms) -->
+  <!--node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" >
+    <param name="publish_frequency" type="double" value="20.0" />
+  </node -->
+
+  <!-- node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="/use_gui" value="false"/>
+  </node -->
+
+  <include file="$(find mobot_gazebo_moveit_config)/launch/move_group.launch">
+    <arg name="publish_monitored_planning_scene" value="true" />
+  </include>
+
+  <!-- node name="rviz" pkg="rviz" type="rviz" respawn="false" args="$(arg command_args)" output="screen">
+    <rosparam command="load" file="$(find mobot_moveit_config)/config/kinematics.yaml"/>
+  </node -->
+  <!-- include file="$(find mobot_control)/launch/socket.launch" -->
+  <node name="gazebo_keyboard" pkg="mobot_control" type="gazebo_keyboard.py" launch-prefix="xterm -e" respawn="true"/>
+  <node name="gazebo_preprocess" pkg="mobot_control" type="mobot_gazebo_preprocess_key" launch-prefix="xterm -e" respawn="true"/>
+  <!-- node name="states_blend" pkg="mobot_interface" type="joint_states_blend" launch-prefix="xterm -e"/ -->
+
+  <node name="arm_coordinator" pkg="mobot_control" type="mobot_gazebo_manipulator" launch-prefix="xterm -e" respawn="true"/>
+  <node name="arm_interface" pkg="mobot_control" type="mobot_gazebo_interface" launch-prefix="xterm -e" respawn="true"/>
+  <node name="vehicle_coordinator" pkg="mobot_control" type="vehicle_gazebo_coordinator" launch-prefix="xterm -e" respawn="true"/>
+  <node name="vehicle_interface" pkg="mobot_control" type="vehicle_gazebo_interface" launch-prefix="xterm -e" respawn="true"/>
+
+  <!-- Launch visualization in rviz -->
+  <node name="rviz" pkg="rviz" type="rviz" respawn="false" args="$(arg command_args)" output="screen" />
+
+</launch>

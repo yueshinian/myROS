@@ -1,0 +1,4 @@
+roslaunch mobot_gazebo mobot_vehicle_gazebo.launch
+roslaunch mobot_control test5.launch
+rosrun rviz rviz -d `rospack find mobot_control`/rviz/mobot.rviz
+

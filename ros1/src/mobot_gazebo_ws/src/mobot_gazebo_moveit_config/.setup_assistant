@@ -1,0 +1,8 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: mobot_description
+    relative_path: urdf/mobot_vehicle_1.urdf
+  SRDF:
+    relative_path: config/move_vehicle.srdf
+  CONFIG:
+    generated_timestamp: 1512492081

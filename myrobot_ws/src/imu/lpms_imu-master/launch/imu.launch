@@ -1,0 +1,8 @@
+<launch>
+
+<node pkg="lpms_imu" type="lpms_imu_node" name="imu" respawn="true" launch-prefix="xterm -e">
+  <param name="port" value="/dev/ttyUSB0"/>
+  <param name="frame_id" value="imu_frame"/>
+</node>
+
+</launch>

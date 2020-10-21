@@ -1,0 +1,4 @@
+<launch>
+<node pkg="mobot6_interface" type="heartbeat_send" name="heartSend" respawn="true" launch-prefix="xterm -e" />
+<node pkg="mobot6_interface" type="heartbeat_recv" name="heartRecv" respawn="true" launch-prefix="xterm -e" />
+</launch>

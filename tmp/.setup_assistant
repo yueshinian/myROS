@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: single_description
+    relative_path: urdf/single_axis.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/single_axis.srdf
+  CONFIG:
+    author_name: yz
+    author_email: yz@gmail.com
+    generated_timestamp: 1602299731

@@ -1,0 +1,6 @@
+std_msgs/Header header
+geometry_msgs/Pose pose
+int32 detect_seq
+float64 detect_rotation
+float64 forward_intensity
+float64 inverse_intensity

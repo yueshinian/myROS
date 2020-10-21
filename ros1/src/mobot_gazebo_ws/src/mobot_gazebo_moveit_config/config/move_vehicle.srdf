@@ -1,0 +1,153 @@
+<?xml version="1.0" ?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="move_vehicle">
+    <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+    <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+    <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+    <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+    <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
+    <group name="manipulator">
+        <chain base_link="11_arm_base_link" tip_link="fake_arm_link" />
+    </group>
+    <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
+    <group_state name="home" group="manipulator">
+        <joint name="joint_bigarm_linear" value="0" />
+        <joint name="joint_bigarm_pitch" value="0" />
+        <joint name="joint_forearm_pitch" value="0" />
+        <joint name="joint_forearm_rotate" value="0" />
+        <joint name="joint_turret_rotate" value="0" />
+        <joint name="joint_wrist_pitch" value="0" />
+        <joint name="joint_wrist_rotate" value="0" />
+    </group_state>
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="11_arm_base_link" link2="12_arm_turret_rotate" reason="Adjacent" />
+    <disable_collisions link1="11_arm_base_link" link2="13_arm_bigarm_pitch" reason="Never" />
+    <disable_collisions link1="11_arm_base_link" link2="14_arm_bigarm_linear" reason="Never" />
+    <disable_collisions link1="11_arm_base_link" link2="15_arm_forearm_pitch" reason="Never" />
+    <disable_collisions link1="11_arm_base_link" link2="21_communication_device" reason="Never" />
+    <disable_collisions link1="11_arm_base_link" link2="22_turret_camera" reason="Never" />
+    <disable_collisions link1="11_arm_base_link" link2="base_footprint" reason="Never" />
+    <disable_collisions link1="11_arm_base_link" link2="base_link" reason="Adjacent" />
+    <disable_collisions link1="11_arm_base_link" link2="swingarm_left" reason="Never" />
+    <disable_collisions link1="11_arm_base_link" link2="swingarm_right" reason="Never" />
+    <disable_collisions link1="11_arm_base_link" link2="wheel_lb" reason="Never" />
+    <disable_collisions link1="11_arm_base_link" link2="wheel_lf" reason="Never" />
+    <disable_collisions link1="11_arm_base_link" link2="wheel_rb" reason="Never" />
+    <disable_collisions link1="11_arm_base_link" link2="wheel_rf" reason="Never" />
+    <disable_collisions link1="12_arm_turret_rotate" link2="13_arm_bigarm_pitch" reason="Adjacent" />
+    <disable_collisions link1="12_arm_turret_rotate" link2="14_arm_bigarm_linear" reason="Never" />
+    <disable_collisions link1="12_arm_turret_rotate" link2="15_arm_forearm_pitch" reason="Never" />
+    <disable_collisions link1="12_arm_turret_rotate" link2="21_communication_device" reason="Never" />
+    <disable_collisions link1="12_arm_turret_rotate" link2="22_turret_camera" reason="Adjacent" />
+    <disable_collisions link1="12_arm_turret_rotate" link2="base_footprint" reason="Never" />
+    <disable_collisions link1="12_arm_turret_rotate" link2="base_link" reason="Never" />
+    <disable_collisions link1="12_arm_turret_rotate" link2="swingarm_right" reason="Never" />
+    <disable_collisions link1="12_arm_turret_rotate" link2="wheel_lb" reason="Never" />
+    <disable_collisions link1="12_arm_turret_rotate" link2="wheel_lf" reason="Never" />
+    <disable_collisions link1="12_arm_turret_rotate" link2="wheel_rb" reason="Never" />
+    <disable_collisions link1="12_arm_turret_rotate" link2="wheel_rf" reason="Never" />
+    <disable_collisions link1="13_arm_bigarm_pitch" link2="14_arm_bigarm_linear" reason="Adjacent" />
+    <disable_collisions link1="13_arm_bigarm_pitch" link2="15_arm_forearm_pitch" reason="Never" />
+    <disable_collisions link1="13_arm_bigarm_pitch" link2="22_turret_camera" reason="Never" />
+    <disable_collisions link1="13_arm_bigarm_pitch" link2="base_footprint" reason="Never" />
+    <disable_collisions link1="13_arm_bigarm_pitch" link2="wheel_lb" reason="Never" />
+    <disable_collisions link1="13_arm_bigarm_pitch" link2="wheel_rb" reason="Never" />
+    <disable_collisions link1="14_arm_bigarm_linear" link2="15_arm_forearm_pitch" reason="Adjacent" />
+    <disable_collisions link1="14_arm_bigarm_linear" link2="16_arm_forearm_rotate" reason="Never" />
+    <disable_collisions link1="14_arm_bigarm_linear" link2="17_arm_wrist_pitch" reason="Never" />
+    <disable_collisions link1="14_arm_bigarm_linear" link2="18_arm_wrist_rotate" reason="Never" />
+    <disable_collisions link1="14_arm_bigarm_linear" link2="22_turret_camera" reason="Never" />
+    <disable_collisions link1="14_arm_bigarm_linear" link2="base_footprint" reason="Never" />
+    <disable_collisions link1="14_arm_bigarm_linear" link2="fake_arm_link" reason="Never" />
+    <disable_collisions link1="14_arm_bigarm_linear" link2="gripper_rod_left1" reason="Never" />
+    <disable_collisions link1="14_arm_bigarm_linear" link2="gripper_rod_right1" reason="Never" />
+    <disable_collisions link1="14_arm_bigarm_linear" link2="gripper_tip_left" reason="Never" />
+    <disable_collisions link1="14_arm_bigarm_linear" link2="gripper_tip_right" reason="Never" />
+    <disable_collisions link1="15_arm_forearm_pitch" link2="16_arm_forearm_rotate" reason="Adjacent" />
+    <disable_collisions link1="15_arm_forearm_pitch" link2="17_arm_wrist_pitch" reason="Never" />
+    <disable_collisions link1="15_arm_forearm_pitch" link2="18_arm_wrist_rotate" reason="Never" />
+    <disable_collisions link1="15_arm_forearm_pitch" link2="22_turret_camera" reason="Never" />
+    <disable_collisions link1="15_arm_forearm_pitch" link2="base_footprint" reason="Never" />
+    <disable_collisions link1="15_arm_forearm_pitch" link2="fake_arm_link" reason="Never" />
+    <disable_collisions link1="15_arm_forearm_pitch" link2="gripper_rod_left1" reason="Never" />
+    <disable_collisions link1="15_arm_forearm_pitch" link2="gripper_rod_right1" reason="Never" />
+    <disable_collisions link1="15_arm_forearm_pitch" link2="gripper_tip_left" reason="Never" />
+    <disable_collisions link1="15_arm_forearm_pitch" link2="gripper_tip_right" reason="Never" />
+    <disable_collisions link1="16_arm_forearm_rotate" link2="17_arm_wrist_pitch" reason="Adjacent" />
+    <disable_collisions link1="16_arm_forearm_rotate" link2="18_arm_wrist_rotate" reason="Never" />
+    <disable_collisions link1="16_arm_forearm_rotate" link2="fake_arm_link" reason="Never" />
+    <disable_collisions link1="16_arm_forearm_rotate" link2="gripper_rod_left1" reason="Never" />
+    <disable_collisions link1="16_arm_forearm_rotate" link2="gripper_rod_right1" reason="Never" />
+    <disable_collisions link1="16_arm_forearm_rotate" link2="gripper_tip_left" reason="Never" />
+    <disable_collisions link1="16_arm_forearm_rotate" link2="gripper_tip_right" reason="Never" />
+    <disable_collisions link1="17_arm_wrist_pitch" link2="18_arm_wrist_rotate" reason="Adjacent" />
+    <disable_collisions link1="17_arm_wrist_pitch" link2="fake_arm_link" reason="Never" />
+    <disable_collisions link1="17_arm_wrist_pitch" link2="gripper_rod_left1" reason="Never" />
+    <disable_collisions link1="17_arm_wrist_pitch" link2="gripper_rod_right1" reason="Never" />
+    <disable_collisions link1="17_arm_wrist_pitch" link2="gripper_tip_left" reason="Never" />
+    <disable_collisions link1="17_arm_wrist_pitch" link2="gripper_tip_right" reason="Never" />
+    <disable_collisions link1="18_arm_wrist_rotate" link2="fake_arm_link" reason="Adjacent" />
+    <disable_collisions link1="18_arm_wrist_rotate" link2="gripper_rod_left1" reason="Adjacent" />
+    <disable_collisions link1="18_arm_wrist_rotate" link2="gripper_rod_right1" reason="Adjacent" />
+    <disable_collisions link1="18_arm_wrist_rotate" link2="gripper_tip_left" reason="Never" />
+    <disable_collisions link1="18_arm_wrist_rotate" link2="gripper_tip_right" reason="Never" />
+    <disable_collisions link1="21_communication_device" link2="22_turret_camera" reason="Never" />
+    <disable_collisions link1="21_communication_device" link2="base_footprint" reason="Never" />
+    <disable_collisions link1="21_communication_device" link2="base_link" reason="Adjacent" />
+    <disable_collisions link1="21_communication_device" link2="swingarm_left" reason="Never" />
+    <disable_collisions link1="21_communication_device" link2="swingarm_right" reason="Never" />
+    <disable_collisions link1="21_communication_device" link2="wheel_lb" reason="Never" />
+    <disable_collisions link1="21_communication_device" link2="wheel_lf" reason="Never" />
+    <disable_collisions link1="21_communication_device" link2="wheel_rb" reason="Never" />
+    <disable_collisions link1="21_communication_device" link2="wheel_rf" reason="Never" />
+    <disable_collisions link1="22_turret_camera" link2="base_footprint" reason="Never" />
+    <disable_collisions link1="22_turret_camera" link2="base_link" reason="Never" />
+    <disable_collisions link1="22_turret_camera" link2="fake_arm_link" reason="Never" />
+    <disable_collisions link1="22_turret_camera" link2="swingarm_left" reason="Never" />
+    <disable_collisions link1="22_turret_camera" link2="swingarm_right" reason="Never" />
+    <disable_collisions link1="22_turret_camera" link2="wheel_lb" reason="Never" />
+    <disable_collisions link1="22_turret_camera" link2="wheel_lf" reason="Never" />
+    <disable_collisions link1="22_turret_camera" link2="wheel_rb" reason="Never" />
+    <disable_collisions link1="22_turret_camera" link2="wheel_rf" reason="Never" />
+    <disable_collisions link1="base_footprint" link2="base_link" reason="Adjacent" />
+    <disable_collisions link1="base_footprint" link2="fake_arm_link" reason="Never" />
+    <disable_collisions link1="base_footprint" link2="swingarm_left" reason="Never" />
+    <disable_collisions link1="base_footprint" link2="swingarm_right" reason="Never" />
+    <disable_collisions link1="base_footprint" link2="wheel_lb" reason="Never" />
+    <disable_collisions link1="base_footprint" link2="wheel_lf" reason="Never" />
+    <disable_collisions link1="base_footprint" link2="wheel_rb" reason="Never" />
+    <disable_collisions link1="base_footprint" link2="wheel_rf" reason="Never" />
+    <disable_collisions link1="base_link" link2="swingarm_left" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="swingarm_right" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="wheel_lb" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="wheel_lf" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="wheel_rb" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="wheel_rf" reason="Adjacent" />
+    <disable_collisions link1="fake_arm_link" link2="gripper_rod_left1" reason="Never" />
+    <disable_collisions link1="fake_arm_link" link2="gripper_rod_right1" reason="Never" />
+    <disable_collisions link1="fake_arm_link" link2="gripper_tip_left" reason="Never" />
+    <disable_collisions link1="fake_arm_link" link2="gripper_tip_right" reason="Never" />
+    <disable_collisions link1="gripper_rod_left1" link2="gripper_rod_right1" reason="Never" />
+    <disable_collisions link1="gripper_rod_left1" link2="gripper_tip_left" reason="Adjacent" />
+    <disable_collisions link1="gripper_rod_left1" link2="gripper_tip_right" reason="Never" />
+    <disable_collisions link1="gripper_rod_right1" link2="gripper_tip_left" reason="Never" />
+    <disable_collisions link1="gripper_rod_right1" link2="gripper_tip_right" reason="Adjacent" />
+    <disable_collisions link1="swingarm_left" link2="swingarm_right" reason="Never" />
+    <disable_collisions link1="swingarm_left" link2="wheel_lb" reason="Never" />
+    <disable_collisions link1="swingarm_left" link2="wheel_lf" reason="Default" />
+    <disable_collisions link1="swingarm_left" link2="wheel_rb" reason="Never" />
+    <disable_collisions link1="swingarm_left" link2="wheel_rf" reason="Never" />
+    <disable_collisions link1="swingarm_right" link2="wheel_lb" reason="Never" />
+    <disable_collisions link1="swingarm_right" link2="wheel_lf" reason="Never" />
+    <disable_collisions link1="swingarm_right" link2="wheel_rb" reason="Never" />
+    <disable_collisions link1="swingarm_right" link2="wheel_rf" reason="Default" />
+    <disable_collisions link1="wheel_lb" link2="wheel_lf" reason="Never" />
+    <disable_collisions link1="wheel_lb" link2="wheel_rb" reason="Never" />
+    <disable_collisions link1="wheel_lb" link2="wheel_rf" reason="Never" />
+    <disable_collisions link1="wheel_lf" link2="wheel_rb" reason="Never" />
+    <disable_collisions link1="wheel_lf" link2="wheel_rf" reason="Never" />
+    <disable_collisions link1="wheel_rb" link2="wheel_rf" reason="Never" />
+</robot>

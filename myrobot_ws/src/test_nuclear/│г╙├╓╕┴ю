@@ -1,0 +1,35 @@
+roscore
+rosrun mobot6_interface mobot6_keyboard_nuclear.py
+rosrun mobot6_interface nuclear_preprocess_key
+rosrun test_nuclear nuclear_interface
+rosrun test_nuclear nuclear_coordinator
+roslaunch turtlebot_test setup1.launch
+rosrun test_nuclear navigation_generator
+
+rosrun test_nuclear serial_node
+
+
+rostopic echo /nuclear_command
+rostopic echo /interface_states_nuclear
+rostopic echo /joint_states_nuclear
+rostopic echo /interface_command_nuclear
+
+rostopic echo /nuclear_intensity
+rostopic echo /nuclear_intensity_point1
+rostopic echo /nuclear_intensity_point2
+rostopic echo /generator_state
+rostopic echo /vehicle_nav_command
+
+
+
+
+COM_STP_POINT:
+"{\"Seq\":1,\"DeviceID\":\"C0001\",\"Command\":\"COM_STP_POINT\",\"Data\":[{\"Point\":\"CMD_POS\",\"Speed\":CMD_SPEED}]}\n"
+COM_STP_ZERO:
+"{\"Seq\":1,\"DeviceID\":\"C0001\",\"Command\":\"COM_STP_ZERO\"}\n"
+COM_STP_STOP
+"{\"Seq\":1,\"DeviceID\":\"C0001\",\"Command\":\"COM_STP_STOP\"}\n"
+COM_VAL_REQ
+"{\"Seq\":1,\"DeviceID\":\"C0001\",\"Command\":\"COM_VAL_REQ\"}\n"
+COM_GM_TOTAL_REQ
+{"Seq":1,"DeviceID":"C0001","Command":"COM_GM_TOTAL_REQ"}\r\n

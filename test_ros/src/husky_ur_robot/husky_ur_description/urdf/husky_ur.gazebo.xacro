@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+ <xacro:macro name="husky_ur_gazebo">
+  <xacro:arg name = "robot_namespace" default="husky_ur"/>
+  <!--husky-->
+  <gazebo>
+    <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+     <updateRate>100.0</updateRate>
+     <robotNamespace>$(arg robot_namespace)</robotNamespace>
+     <leftFrontJoint>front_left_wheel</leftFrontJoint>
+     <rightFrontJoint>front_right_wheel</rightFrontJoint>
+     <leftRearJoint>rear_left_wheel</leftRearJoint>
+     <rightRearJoint>rear_right_wheel</rightRearJoint>
+     <commandTopic>cmd_vel</commandTopic>
+     <odometryTopic>odom</odometryTopic>
+     <odometryFrame>odom</odometryFrame>
+     <wheelSeparation>4</wheelSeparation>
+     <wheelDiameter>0.1</wheelDiameter>
+     <robotBaseFrame>base_footprint</robotBaseFrame>
+     <torque>1</torque>
+     <topicName>cmd_vel</topicName>
+     <broadcastTF>1</broadcastTF>
+     <covariance_x>0.0001</covariance_x>
+     <covariance_y>0.0001</covariance_y>
+     <covariance_yaw>0.01</covariance_yaw>
+   </plugin>
+  </gazebo>
+
+ <!-- <gazebo>
+    <plugin name="imu_controller" filename="libhector_gazebo_ros_imu.so">
+      <robotNamespace>$(arg robot_namespace)</robotNamespace>
+      <updateRate>50.0</updateRate>
+      <bodyName>base_link</bodyName>
+      <topicName>imu/data</topicName>
+      <accelDrift>0.005 0.005 0.005</accelDrift>
+      <accelGaussianNoise>0.005 0.005 0.005</accelGaussianNoise>
+      <rateDrift>0.005 0.005 0.005 </rateDrift>
+      <rateGaussianNoise>0.005 0.005 0.005 </rateGaussianNoise>
+      <headingDrift>0.005</headingDrift>
+      <headingGaussianNoise>0.005</headingGaussianNoise>
+    </plugin>
+  </gazebo>
+
+  <gazebo>
+    <plugin name="gps_controller" filename="libhector_gazebo_ros_gps.so">
+      <robotNamespace>$(arg robot_namespace)</robotNamespace>
+      <updateRate>40</updateRate>
+      <bodyName>base_link</bodyName>
+      <frameId>base_link</frameId>
+      <topicName>navsat/fix</topicName>
+      <velocityTopicName>navsat/vel</velocityTopicName>
+      <referenceLatitude>49.9</referenceLatitude>
+      <referenceLongitude>8.9</referenceLongitude>
+      <referenceHeading>0</referenceHeading>
+      <referenceAltitude>0</referenceAltitude>
+      <drift>0.0001 0.0001 0.0001</drift>
+    </plugin>
+  </gazebo>-->
+
+  <!--ur-->
+   <gazebo>
+    <plugin name="ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>$(arg robot_namespace)</robotNamespace>
+      <legacyModeNS>true</legacyModeNS>
+    </plugin>
+   </gazebo>
+    <xacro:property name="prefix" value="" />
+    <xacro:property name="hw_interface" value="hardware_interface/PositionJointInterface" />
+
+   <!-- <gazebo reference="${prefix}shoulder_link">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${prefix}upper_arm_link">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${prefix}forearm_link">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${prefix}wrist_1_link">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${prefix}wrist_3_link">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${prefix}wrist_2_link">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${prefix}ee_link">
+      <selfCollide>true</selfCollide>
+    </gazebo>-->
+    
+    <transmission name="${prefix}shoulder_pan_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}shoulder_pan_joint">
+        <hardwareInterface>${hw_interface}</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}shoulder_pan_motor">
+        <hardwareInterface>${hw_interface}</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="${prefix}shoulder_lift_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}shoulder_lift_joint">
+        <hardwareInterface>${hw_interface}</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}shoulder_lift_motor">
+        <hardwareInterface>${hw_interface}</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="${prefix}elbow_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}elbow_joint">
+        <hardwareInterface>${hw_interface}</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}elbow_motor">
+        <hardwareInterface>${hw_interface}</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="${prefix}wrist_1_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}wrist_1_joint">
+        <hardwareInterface>${hw_interface}</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}wrist_1_motor">
+        <hardwareInterface>${hw_interface}</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="${prefix}wrist_2_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}wrist_2_joint">
+        <hardwareInterface>${hw_interface}</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}wrist_2_motor">
+        <hardwareInterface>${hw_interface}</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="${prefix}wrist_3_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}wrist_3_joint">
+        <hardwareInterface>${hw_interface}</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}wrist_3_motor">
+        <hardwareInterface>${hw_interface}</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+</xacro:macro>
+</robot>

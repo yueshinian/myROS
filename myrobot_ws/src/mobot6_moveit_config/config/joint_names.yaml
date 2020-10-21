@@ -1,0 +1,2 @@
+controller_joint_names: [joint_turret_rotate, joint_bigarm_pitch, joint_forearm_pitch, joint_forearm_rotate, joint_wrist_pitch, joint_wrist_rotate]
+

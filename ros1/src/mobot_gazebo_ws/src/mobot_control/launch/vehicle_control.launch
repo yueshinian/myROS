@@ -1,0 +1,8 @@
+<launch>
+  <!-- Load joint controller configurations to parameter server -->
+  <rosparam file="$(find mobot_control)/config/vehicle_control.yaml" command="load" />
+
+  <!-- Load the controller -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/mobot_vehicle" args="joint_state_controller swingarm_velocity_controllers manipulator_position_controllers gripper_velocity_controller gripper_position_controllers" />
+
+</launch>

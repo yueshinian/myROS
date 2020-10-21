@@ -1,0 +1,7 @@
+controller_list:
+  - name: fake_manipilation_controller
+    joints:
+      - joint_turret_rotate
+initial:  # Define initial robot poses.
+#  - group: manipilation
+#    pose: home

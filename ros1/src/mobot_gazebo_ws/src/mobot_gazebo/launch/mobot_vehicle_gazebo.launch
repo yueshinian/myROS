@@ -1,0 +1,43 @@
+<launch>
+
+  <!-- these are the arguments you can pass this launch file, for example paused:=true -->
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+
+  <!-- We resume the logic in empty_world.launch -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find mobot_gazebo)/worlds/mobot.world" />
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="headless" value="$(arg headless)"/>
+  </include>
+
+  <!-- urdf xml robot description loaded on the Parameter Server-->
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find mobot_description)/urdf/mobot_vehicle_1.xacro'" /> 
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+
+  <!-- start robot state publisher -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen" respawn="false" >
+    <param name="publish_frequency" type="double" value="20.0" />
+    <remap from="/joint_states" to="/joint_states_combined" />
+  </node>
+
+  <!-- start the joint_states_combined node -->
+  <node pkg="mobot_control" type="joint_states_combined" name="joint_states_combined" output="screen" respawn="false" />
+
+  <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+	args="-urdf -model mobot_vehicle -param robot_description" >
+  </node> 
+
+  <!-- load the joint controllers to the param server-->
+  <include file="$(find mobot_control)/launch/vehicle_control.launch" />
+
+
+</launch>

@@ -1,0 +1,521 @@
+Panels:
+  - Class: rviz/Displays
+    Help Height: 0
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /Global Options1
+        - /Status1
+        - /Grid1
+        - /LaserScan1
+      Splitter Ratio: 0.423841
+    Tree Height: 427
+  - Class: rviz/Selection
+    Name: Selection
+  - Class: rviz/Tool Properties
+    Expanded:
+      - /2D Pose Estimate1
+      - /2D Nav Goal1
+      - /Publish Point1
+    Name: Tool Properties
+    Splitter Ratio: 0.588679
+  - Class: rviz/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+  - Class: rviz/Time
+    Experimental: false
+    Name: Time
+    SyncMode: 0
+    SyncSource: front_camera
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.5
+      Cell Size: 1
+      Class: rviz/Grid
+      Color: 160; 160; 164
+      Enabled: true
+      Line Style:
+        Line Width: 0.03
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 100
+      Reference Frame: <Fixed Frame>
+      Value: true
+    - Class: rviz/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        11_arm_base_link:
+          Value: true
+        12_arm_turret_rotate:
+          Value: true
+        13_arm_bigarm_pitch:
+          Value: true
+        14_arm_bigarm_linear:
+          Value: true
+        15_arm_forearm_pitch:
+          Value: true
+        16_arm_forearm_rotate:
+          Value: true
+        17_arm_wrist_pitch:
+          Value: true
+        18_arm_wrist_rotate:
+          Value: true
+        21_communication_device:
+          Value: true
+        22_turret_camera:
+          Value: true
+        23_wrist_camera:
+          Value: true
+        All Enabled: true
+        base_footprint:
+          Value: true
+        base_link:
+          Value: true
+        comm_front_camera_frame:
+          Value: true
+        comm_rear_camera_frame:
+          Value: true
+        fake_arm_link:
+          Value: true
+        gripper_rod_left1:
+          Value: true
+        gripper_rod_right1:
+          Value: true
+        gripper_tip_left:
+          Value: true
+        gripper_tip_right:
+          Value: true
+        odom:
+          Value: true
+        swingarm_left:
+          Value: true
+        swingarm_right:
+          Value: true
+        turret_camera_frame:
+          Value: true
+        turret_laser_frame:
+          Value: true
+        wheel_lb:
+          Value: true
+        wheel_lf:
+          Value: true
+        wheel_rb:
+          Value: true
+        wheel_rf:
+          Value: true
+        wrist_camera_frame:
+          Value: true
+      Marker Scale: 0.3
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Tree:
+        odom:
+          base_footprint:
+            base_link:
+              11_arm_base_link:
+                12_arm_turret_rotate:
+                  13_arm_bigarm_pitch:
+                    14_arm_bigarm_linear:
+                      15_arm_forearm_pitch:
+                        16_arm_forearm_rotate:
+                          17_arm_wrist_pitch:
+                            18_arm_wrist_rotate:
+                              fake_arm_link:
+                                {}
+                              gripper_rod_left1:
+                                gripper_tip_left:
+                                  {}
+                              gripper_rod_right1:
+                                gripper_tip_right:
+                                  {}
+                            23_wrist_camera:
+                              wrist_camera_frame:
+                                {}
+                  22_turret_camera:
+                    turret_camera_frame:
+                      {}
+                    turret_laser_frame:
+                      {}
+              21_communication_device:
+                comm_front_camera_frame:
+                  {}
+                comm_rear_camera_frame:
+                  {}
+              swingarm_left:
+                {}
+              swingarm_right:
+                {}
+              wheel_lb:
+                {}
+              wheel_lf:
+                {}
+              wheel_rb:
+                {}
+              wheel_rf:
+                {}
+      Update Interval: 0
+      Value: true
+    - Alpha: 0.5
+      Class: rviz/RobotModel
+      Collision Enabled: false
+      Enabled: true
+      Links:
+        11_arm_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        12_arm_turret_rotate:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        13_arm_bigarm_pitch:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        14_arm_bigarm_linear:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        15_arm_forearm_pitch:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        16_arm_forearm_rotate:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        17_arm_wrist_pitch:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        18_arm_wrist_rotate:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        21_communication_device:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        22_turret_camera:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        23_wrist_camera:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        All Links Enabled: true
+        Expand Joint Details: false
+        Expand Link Details: false
+        Expand Tree: false
+        Link Tree Style: Links in Alphabetic Order
+        base_footprint:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        comm_front_camera_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        comm_rear_camera_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        fake_arm_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gripper_rod_left1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gripper_rod_right1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gripper_tip_left:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gripper_tip_right:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        swingarm_left:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        swingarm_right:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        turret_camera_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        turret_laser_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        wheel_lb:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        wheel_lf:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        wheel_rb:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        wheel_rf:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        wrist_camera_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+      Name: RobotModel
+      Robot Description: robot_description
+      TF Prefix: ""
+      Update Interval: 0
+      Value: true
+      Visual Enabled: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/LaserScan
+      Color: 255; 255; 255
+      Color Transformer: Intensity
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 0
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: LaserScan
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.02
+      Style: Flat Squares
+      Topic: /turret_laser/scan
+      Unreliable: false
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+    - Class: rviz/Camera
+      Enabled: true
+      Image Rendering: background and overlay
+      Image Topic: /comm_front_camera/image_raw
+      Name: front_camera
+      Overlay Alpha: 0.5
+      Queue Size: 2
+      Transport Hint: raw
+      Unreliable: false
+      Value: true
+      Visibility:
+        Grid: true
+        LaserScan: true
+        Odometry: true
+        RobotModel: true
+        TF: true
+        Value: false
+        rear_camera: true
+        turret_camera: true
+        wrist_camera: true
+      Zoom Factor: 1
+    - Class: rviz/Camera
+      Enabled: true
+      Image Rendering: background and overlay
+      Image Topic: /comm_rear_camera/image_raw
+      Name: rear_camera
+      Overlay Alpha: 0.5
+      Queue Size: 2
+      Transport Hint: raw
+      Unreliable: false
+      Value: true
+      Visibility:
+        Grid: true
+        LaserScan: true
+        Odometry: true
+        RobotModel: true
+        TF: true
+        Value: false
+        front_camera: true
+        turret_camera: true
+        wrist_camera: true
+      Zoom Factor: 1
+    - Class: rviz/Camera
+      Enabled: true
+      Image Rendering: background and overlay
+      Image Topic: /turret_camera/image_raw
+      Name: turret_camera
+      Overlay Alpha: 0.5
+      Queue Size: 2
+      Transport Hint: raw
+      Unreliable: false
+      Value: true
+      Visibility:
+        Grid: true
+        LaserScan: true
+        Odometry: true
+        RobotModel: true
+        TF: true
+        Value: false
+        front_camera: true
+        rear_camera: true
+        wrist_camera: true
+      Zoom Factor: 1
+    - Class: rviz/Camera
+      Enabled: true
+      Image Rendering: background and overlay
+      Image Topic: /wrist_camera/image_raw
+      Name: wrist_camera
+      Overlay Alpha: 0.5
+      Queue Size: 2
+      Transport Hint: raw
+      Unreliable: false
+      Value: true
+      Visibility:
+        Grid: true
+        LaserScan: true
+        Odometry: true
+        RobotModel: true
+        TF: true
+        Value: false
+        front_camera: true
+        rear_camera: true
+        turret_camera: true
+      Zoom Factor: 1
+    - Angle Tolerance: 0.1
+      Class: rviz/Odometry
+      Color: 255; 25; 0
+      Enabled: true
+      Keep: 100
+      Length: 0.4
+      Name: Odometry
+      Position Tolerance: 0.1
+      Topic: /odom
+      Value: true
+  Enabled: true
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: odom
+    Frame Rate: 20
+  Name: root
+  Tools:
+    - Class: rviz/Interact
+      Hide Inactive Objects: true
+    - Class: rviz/MoveCamera
+    - Class: rviz/Select
+    - Class: rviz/FocusCamera
+    - Class: rviz/Measure
+    - Class: rviz/SetInitialPose
+      Topic: /initialpose
+    - Class: rviz/SetGoal
+      Topic: /move_base_simple/goal
+    - Class: rviz/PublishPoint
+      Single click: true
+      Topic: /clicked_point
+  Value: true
+  Views:
+    Current:
+      Class: rviz/Orbit
+      Distance: 15.8665
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.06
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
+      Focal Point:
+        X: -3.88938
+        Y: 11.3088
+        Z: -6.36992
+      Name: Current View
+      Near Clip Distance: 0.01
+      Pitch: 1.0148
+      Target Frame: <Fixed Frame>
+      Value: Orbit (rviz)
+      Yaw: 1.5472
+    Saved: ~
+Window Geometry:
+  Displays:
+    collapsed: false
+  Height: 1015
+  Hide Left Dock: false
+  Hide Right Dock: true
+  QMainWindow State: 000000ff00000000fd000000040000000000000209000001f5fc0200000008fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000006800fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afc00000195000001f5000000e600fffffffa000000010100000002fb0000001e004d006f00740069006f006e00200050006c0061006e006e0069006e00670100000000ffffffff0000000000000000fb000000100044006900730070006c00610079007301000000000000030d0000017c00fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c0000026100000001000001130000030cfc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a0056006900650077007300000000280000030c000000be00fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b20000000000000000000000020000073100000167fc0100000005fb0000001a007400750072007200650074005f00630061006d0065007200610100000000000001c8000000aa00fffffffb0000001800660072006f006e0074005f00630061006d00650072006101000001ce000001c6000000a300fffffffc0000039a000001cc0000009a00fffffffa000000010200000002fb0000000c00430061006d0065007200610000000000ffffffff0000000000000000fb000000160072006500610072005f00630061006d00650072006101000000280000015f0000001a00fffffffb0000001800770072006900730074005f00630061006d006500720061010000056c000001c5000000a200fffffffb0000000a00560069006500770073030000004e00000080000002e100000197000000030000073100000044fc0100000002fb0000000800540069006d00650100000000000007310000038800fffffffb0000000800540069006d0065010000000000000450000000000000000000000522000001f500000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Selection:
+    collapsed: false
+  Time:
+    collapsed: false
+  Tool Properties:
+    collapsed: false
+  Views:
+    collapsed: true
+  Width: 1841
+  X: 66
+  Y: 17
+  front_camera:
+    collapsed: false
+  rear_camera:
+    collapsed: false
+  turret_camera:
+    collapsed: false
+  wrist_camera:
+    collapsed: false

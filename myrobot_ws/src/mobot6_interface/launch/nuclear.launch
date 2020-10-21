@@ -1,0 +1,9 @@
+<launch>
+  <node name="nuclear_keyboard" pkg="mobot6_interface" type="mobot6_keyboard_nuclear.py" launch-prefix="xterm -e"/>
+  <node name="nuclear_pre_process" pkg="mobot6_interface" type="nuclear_preprocess_key" />
+
+  <node name="nuclear_interface" pkg="test_nuclear" type="nuclear_interface" launch-prefix="xterm -e" respawn="true"/>
+  <node name="nuclear_coordinator" pkg="test_nuclear" type="nuclear_coordinator" launch-prefix="xterm -e" respawn="true"/>
+  <node name="nav_generator" pkg="test_nuclear" type="navigation_generator" launch-prefix="xterm -e" respawn="true"/>
+</launch>
+

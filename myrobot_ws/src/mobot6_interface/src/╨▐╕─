@@ -1,0 +1,3 @@
+﻿joint6_ststes_blend 话题名字变为joint_states_blend
+coordinator 发布odom信息的话题名字变为odom
+  

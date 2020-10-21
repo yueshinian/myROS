@@ -1,0 +1,55 @@
+mobot_vehicle:
+  # Publish all joint states of vehicle -------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50.0
+ 
+  # Swingarm velocity controllers -------------------------
+  swingarm_velocity_controllers:
+    type: velocity_controllers/JointGroupVelocityController
+    joints:
+      - joint_swingarm_left
+      - joint_swingarm_right
+
+  # manipulator position controllers ----------------------
+  manipulator_position_controllers:
+    type: position_controllers/JointGroupPositionController
+    joints:
+      - joint_turret_rotate
+      - joint_bigarm_pitch
+      - joint_bigarm_linear
+      - joint_forearm_pitch
+      - joint_forearm_rotate
+      - joint_wrist_pitch
+      - joint_wrist_rotate
+
+  # gripper velocity controllers ----------------------
+  gripper_velocity_controller:
+    type: velocity_controllers/JointVelocityController
+    joint: joint_rod_left1
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  gripper_position_controllers:
+    type: position_controllers/JointGroupPositionController
+    joints:
+      - joint_rod_right1
+      - joint_tip_left
+      - joint_tip_right
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

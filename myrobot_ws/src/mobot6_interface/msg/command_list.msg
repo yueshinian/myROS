@@ -1,0 +1,10 @@
+float64[] joints
+float64[] lspb
+float64[] cartesians
+float64[] moves
+float64[] swings
+float64[] nuclear
+float64 grippers
+int32 framesID
+int32 commandID
+int8 laser_flag

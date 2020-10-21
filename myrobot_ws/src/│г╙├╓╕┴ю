@@ -1,0 +1,24 @@
+roslaunch mobot_interface test3.launch
+rosrun mobot_interface mobot_manipulator
+rosrun mobot_interface mobot_interface
+
+roscore
+rosrun mobot_interface mobot_keyboard.py
+rosrun mobot_interface mobot_preprocess_key
+
+rostopic echo /arm_command
+rostopic echo /gripper_command
+rostopic echo /swingarm_command
+rostopic echo /interface_command
+rostopic echo /interface_command_grip
+rostopic echo /arm_user_frame
+rostopic echo /joint_states
+rostopic echo /interface_states
+rostopic echo /joint_path_command
+
+rostopic echo /feedback_states
+
+rqt_graph
+roslaunch urdf_tutorial display.launch model:='$(find mobot_interface)'/urdf/myrobot_0412_test_version.urdf gui:=true
+roslaunch urdf_tutorial display.launch model:='$(find mobot_interface)'/urdf/myrobot_0412_original_version.urdf gui:=true
+

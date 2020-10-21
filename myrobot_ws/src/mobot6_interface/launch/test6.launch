@@ -1,0 +1,50 @@
+<launch>
+
+  <arg name="model" default="$(find mobot6_interface)/urdf/myrobot_20171128.urdf" />
+  <arg name="gui" default="false" />
+  <param name="robot_description" textfile="$(arg model)" />
+  <param name="use_gui" value="$(arg gui)"/>
+
+  <arg name="command_args" value="-d $(find mobot6_interface)/rviz/moveit.rviz" />
+
+  <include file="$(find mobot6_moveit_config)/launch/planning_context.launch" >
+    <arg name="load_robot_description" value="true" />
+  </include>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" >
+    <param name="publish_frequency" type="double" value="20.0" />
+  </node>
+
+  <include file="$(find mobot6_moveit_config)/launch/move_group.launch">
+    <arg name="publish_monitored_planning_scene" value="true" />
+    <remap from="/joint_states" to="/joint_states_vehicle" />
+  </include>
+
+  <!--node name="rviz" pkg="rviz" type="rviz" respawn="false" args="$(arg command_args)" output="screen">
+    <rosparam command="load" file="$(find mobot6_moveit_config)/config/kinematics.yaml"/>
+  </node-->
+
+  <include file="$(find mobot6_interface)/launch/socket.launch"/>
+  <!--include file="$(find mobot6_planning)/launch/mobot6_bringup_moveit.launch"/-->
+  <!--node name="mobot_keyboard" pkg="mobot6_interface" type="mobot6_keyboard.py" launch-prefix="xterm -e"/-->
+<node name="pre_process" pkg="mobot6_interface" type="mobot6_preprocess_qt" respawn="true"/>
+  <!--node name="pre_process" pkg="mobot6_interface" type="mobot6_preprocess_key" respawn="true" launch-prefix="xterm -e"/-->
+  <!--node name="fake_vehicle_states" pkg="mobot6_interface" type="fake_joint_states_vehicle" /-->
+  <node name="states_blend" pkg="mobot6_interface" type="joint6_states_blend" respawn="true"/>
+  <node name="node6_check" pkg="mobot6_interface" type="node6_check" />
+  <node name="mobot6_coordinator" pkg="mobot6_interface" type="mobot6_manipulator" launch-prefix="xterm -e" respawn="true"/>
+  <node name="mobot6_interface" pkg="mobot6_interface" type="mobot6_interface" launch-prefix="xterm -e" respawn="true"/>
+  <!--node name="feed_back" pkg="mobot6_interface" type="feed_back_states" respawn="true"/-->
+  <!--node name="goal" pkg="mobot6_interface" type="goal" launch-prefix="xterm -e" respawn="true"/-->
+  <node name="vehicle_coordinator" pkg="mobot6_interface" type="vehicle61_coordinator"  respawn="true" />
+  <node name="vehicle_interface" pkg="mobot6_interface" type="vehicle61_interface"  respawn="true" />
+  <!-- node name="joint_state_once" pkg="mobot_interface" type="joint_state_once"/ -->
+ <node  pkg="laser" type="laser"  name="laser"/>
+  <node name="nuclear_interface" pkg="test_nuclear" type="nuclear_interface"/>
+  <node name="nuclear_coordinator" pkg="test_nuclear" type="nuclear_coordinator" />
+  <node name="nav_generator" pkg="test_nuclear" type="navigation_generator" />
+  <node pkg="lpms_imu" type="lpms_imu_node" name="imu" respawn="true">
+    <param name="port" value="/dev/imu_port"/>
+    <param name="frame_id" value="imu_frame"/>
+  </node>
+</launch>
